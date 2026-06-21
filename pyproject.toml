@@ -1,0 +1,31 @@
+[project]
+name = "rahm"
+version = "0.0.1"
+description = "A general framework to use in the Wolfrahm projects"
+authors = [{ name = "David Van De Walle", email = "david@wolfrahm.com" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/Wolfrahm/rahm_lib_py"
+
+[project.optional-dependencies]
+starlette = ["starlette", "uvicorn"]
+falcon = ["falcon"]
+robyn = ["robyn"]
+
+[dependency-groups]
+dev = ["flake8", "pytest", "pytest-asyncio", "starlette", "uvicorn", "httpx", "falcon", "robyn"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["rahm"]
