@@ -13,11 +13,11 @@ Repository = "https://github.com/Wolfrahm/rahm_lib_py"
 
 [project.optional-dependencies]
 starlette = ["starlette", "uvicorn"]
-falcon = ["falcon"]
+falcon = ["falcon", "granian"]
 robyn = ["robyn"]
 
 [dependency-groups]
-dev = ["flake8", "pytest", "pytest-asyncio", "starlette", "uvicorn", "httpx", "falcon", "robyn"]
+dev = ["flake8", "pytest", "pytest-asyncio", "starlette", "uvicorn", "httpx", "falcon", "granian", "robyn"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

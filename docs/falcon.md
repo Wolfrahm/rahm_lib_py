@@ -8,7 +8,7 @@
 uv sync --extra falcon
 ```
 
-Pulls in `falcon` alongside `rahm`.
+Pulls in `falcon` and `granian` (the production server) alongside `rahm`.
 
 ## What you get
 
@@ -65,7 +65,7 @@ All the env vars from [docs/logging.md](logging.md#configuration) still apply.
 uv run --env-file .env python -m demo.log_falcon
 ```
 
-The script (`demo/log_falcon.py`) boots a real Falcon WSGI app on `wsgiref.simple_server` (no extra runtime needed) in a background thread, fires baseline / supplied-trace-id / 404 / uncaught-exception requests, and exits cleanly.
+The script (`demo/log_falcon.py`) serves a real Falcon WSGI app on **Granian** — the same server used in production, so the demo exercises the rahm integration (and its error handling) on the real runtime. Granian is multi-process: it spawns worker processes that import the `demo.log_falcon:app` target, so the request-firing block is guarded by `if __name__ == '__main__'`. The server runs on the main thread while a background thread fires baseline / supplied-trace-id / 404 / uncaught-exception requests, then trips Granian's interrupt for a clean shutdown.
 
 ## See also
 
